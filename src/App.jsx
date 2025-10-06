@@ -129,7 +129,9 @@ function App() {
     // Simulate API delay
     setTimeout(async () => {
       try {
-        const responsesData = await fetch('/responses.json').then(res => res.json())
+        // Use import.meta.env.BASE_URL to get the correct base path
+        const basePath = import.meta.env.BASE_URL
+        const responsesData = await fetch(`${basePath}responses.json`).then(res => res.json())
         const fileName = uploadedFile.name
         const mockResponse = responsesData[fileName] || 'File not recognized — please upload a supported document.'
         
